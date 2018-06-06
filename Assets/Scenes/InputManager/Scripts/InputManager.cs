@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Girigiri.Input
+namespace Girigiri
 {
     public class InputManager : MonoBehaviour
     {
@@ -27,6 +27,11 @@ namespace Girigiri.Input
         void Update()
         {
 
+        }
+
+        public void SetState(InputState state)
+        {
+            this.State = state;
         }
     }
 }

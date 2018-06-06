@@ -1,10 +1,11 @@
-namespace Girigiri.Input
+using UnityEngine;
+
+namespace Girigiri
 {
 
     public struct InputState
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public Vector2 Position { get; set; }
         public bool Enter { get; set; }
         public bool Cancel { get; set; }
 
