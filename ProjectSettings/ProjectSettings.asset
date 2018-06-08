@@ -644,7 +644,7 @@ PlayerSettings:
   cloudServicesEnabled:
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: b24f395b-b849-45ea-a785-e41a84d4adbd
   projectName: girigiri
   organizationId: kataocean
