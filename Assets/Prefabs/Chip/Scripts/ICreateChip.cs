@@ -3,6 +3,6 @@ namespace Girigiri
 {
     interface ICreateChip : IEventSystemHandler
     {
-        void OnCreate(Chip chip);
+        void OnCreateChip(Chip chip);
     }
 }

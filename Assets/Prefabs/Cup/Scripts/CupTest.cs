@@ -10,6 +10,8 @@ namespace Girigiri
         private Cup Cup { get; set; }
         [SerializeField]
         private Text textSize;
+        [SerializeField]
+        private Text textState;
         // Use this for initialization
         void Start()
         {
@@ -23,8 +25,13 @@ namespace Girigiri
         // Update is called once per frame
         void Update()
         {
-            if (textSize == null) return;
-            textSize.text = string.Format("TotalSize: {0:F1}", Cup.TotalSize);
+            SetText(textSize, string.Format("TotalSize: {0:F1}", Cup.TotalSize));
+            SetText(textState, string.Format("State: {0}", Cup.State.ToString()));
+        }
+        void SetText(Text text, string message)
+        {
+            if (text == null) return;
+            text.text = message;
         }
     }
 }

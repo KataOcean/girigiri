@@ -11,10 +11,8 @@ namespace Girigiri
         public static ChipFactory Instance;
         [SerializeField]
         private GameObject chipPrefab;
-        [SerializeField]
-        private List<GameObject> dropListeners = new List<GameObject>();
-        [SerializeField]
-        private List<GameObject> createListeners = new List<GameObject>();
+        public List<GameObject> dropListeners = new List<GameObject>();
+        public List<GameObject> createListeners = new List<GameObject>();
         private List<Chip> chips = new List<Chip>();
         public IReadOnlyCollection<Chip> Chips => chips;
         private void Awake()
@@ -32,14 +30,25 @@ namespace Girigiri
             var chip = chipObject.GetComponent<Chip>();
             chip.ChipFactory = this;
             chips.Add(chip);
-            foreach (var target in createListeners) ExecuteEvents.Execute<ICreateChip>(target, null, (x, data) => x.OnCreate(chip));
+            createListeners.RemoveAll(x => x == null);
+            foreach (var target in createListeners) ExecuteEvents.Execute<ICreateChip>(target, null, (x, data) => x.OnCreateChip(chip));
             return chip;
         }
 
         public void Remove(Chip chip)
         {
             chips.Remove(chip);
-            foreach (var target in dropListeners) ExecuteEvents.Execute<IDropChip>(target, null, (x, data) => x.OnDrop(chip));
+            dropListeners.RemoveAll(x => x == null);
+            foreach (var target in dropListeners) ExecuteEvents.Execute<IDropChip>(target, null, (x, data) => x.OnDropChip(chip));
+        }
+
+        public void AddCreateListener(GameObject obj)
+        {
+            createListeners.Add(obj);
+        }
+        public void AddDropListener(GameObject obj)
+        {
+            dropListeners.Add(obj);
         }
     }
 
