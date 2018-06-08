@@ -6,41 +6,33 @@ namespace Girigiri
 {
     public class Pot : MonoBehaviour
     {
-        private InputManager InputManager;
-
+        private Rigidbody2D body;
+        private Vector2 nextPosition;
         [SerializeField]
         private PourPosition pourPosition;
-        private bool IsPause { get; set; }
+        private bool IsWait { get; set; }
+
         // Use this for initialization
         void Start()
         {
-            InputManager = InputManager.Instance;
+            body = GetComponent<Rigidbody2D>();
+            nextPosition = transform.position;
         }
 
-        // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
-            if (InputManager == null) return;
-            var state = InputManager.State;
-            transform.position = new Vector3(state.Position.x, state.Position.y, transform.position.z);
-            if (state.Enter)
-            {
-                if (!IsPause) Pour();
-            }
-            else IsPause = false;
-
+            body.MovePosition(nextPosition);
+        }
+        public void Move(Vector2 position)
+        {
+            nextPosition = new Vector2(position.x, transform.position.y);
         }
 
-        void Pour()
+        public void Pour()
         {
             if (pourPosition == null) return;
             if (!pourPosition.canPour) return;
             ChipFactory.Instance?.Create(pourPosition.Position);
-        }
-
-        public void Pause()
-        {
-            IsPause = true;
         }
     }
 }

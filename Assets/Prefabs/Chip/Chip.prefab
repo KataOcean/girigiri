@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114717475955815352}
   m_Layer: 8
   m_Name: Chip
-  m_TagString: Untagged
+  m_TagString: Chip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,3 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e378e614c6b4fab8bd5c3d68b8b671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stoppableTime: 0.5
+  stopVelocity: 0.01

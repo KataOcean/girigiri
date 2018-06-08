@@ -9,17 +9,26 @@ namespace Girigiri
     public class Chip : MonoBehaviour
     {
         public float Size { get; private set; } = 1.0f;
+        [SerializeField]
+        private float stoppableTime = 0.5f; //この時間以上経過したら静止判定を始める
         public bool IsStop
         {
             get
             {
-                return body?.IsSleeping() ?? true;
+                if (DropTimer < stoppableTime) return false;
+                if (body == null) return true;
+                var velocity = body.velocity;
+                return body.IsSleeping() || (Mathf.Abs(velocity.x) <= stopVelocity && Mathf.Abs(velocity.y) <= stopVelocity);
             }
         }
         private Rigidbody2D body;
         [SerializeField]
-        private List<GameObject> OnDropChips;
+        private float stopVelocity = 0.1f;
         public ChipFactory ChipFactory { get; set; }
+        private float DropTimer { get; set; } = 0.0f;
+        private float BrokenTimer { get; set; } = 0.0f;
+        private bool IsBroken { get; set; } = false;
+        const float BROKEN_TIME = 5.0f;
         // Use this for initialization
         void Start()
         {
@@ -33,19 +42,32 @@ namespace Girigiri
         // Update is called once per frame
         void Update()
         {
-
+            DropTimer += Time.deltaTime;
+            if (IsBroken)
+            {
+                BrokenTimer += Time.deltaTime;
+                if (BrokenTimer > BROKEN_TIME) Destroy(gameObject);
+            }
         }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.GetComponent<Ground>() != null)
             {
+                ChipFactory?.Remove(this);
                 Destroy(gameObject);
             }
         }
-        void OnDestroy()
+        public void Broken()
         {
-            ChipFactory.Remove(this);
+            if (gameObject == null) return;
+            IsBroken = true;
+            BrokenTimer = 0.0f;
+            gameObject.layer = LayerMask.NameToLayer("InActive");
+        }
+        public void Fix()
+        {
+            body.bodyType = RigidbodyType2D.Static;
         }
     }
 }

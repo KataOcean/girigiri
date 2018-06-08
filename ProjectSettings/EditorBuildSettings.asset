@@ -6,6 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/GameRunner/GameRunner.unity
+    guid: 23226b60c1d494a048ae3ad4f039a347
+  - enabled: 1
+    path: Assets/Scenes/Title/Title.unity
+    guid: 41a54e0f795744bf09b4cb16327e7f17
+  - enabled: 1
+    path: Assets/Scenes/Main/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/GameTimer/GameTimer.unity
+    guid: 5fb06929d54ae404e821fcb80f8e3e46
+  - enabled: 1
+    path: Assets/Scenes/InputManager/InputManager.unity
+    guid: aec59fe033a0a4351936f7594f02262f
+  - enabled: 1
+    path: Assets/Scenes/Result/Result.unity
+    guid: 853ce961319c54fae8cde9a71b8e7582
+  - enabled: 1
+    path: Assets/Scenes/Score/Score.unity
+    guid: 0ec9042372c85455e84ad7c67846aa94
   m_configObjects: {}

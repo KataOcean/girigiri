@@ -3,6 +3,6 @@ namespace Girigiri
 {
     interface IDropChip : IEventSystemHandler
     {
-        void OnDrop(Chip chip);
+        void OnDropChip(Chip chip);
     }
 }
