@@ -24,7 +24,7 @@ namespace Girigiri
         void Update()
         {
             if (TextScore == null) return;
-            TextScore.text = string.Format("ウリアゲ¥{0:D6}", (int)Score.Value);
+            TextScore.text = string.Format("{0:C} -", (int)Score.Value);
         }
     }
 }

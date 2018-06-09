@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1482123512807558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.7289395, y: 1.5091577, z: 0}
+  m_LocalPosition: {x: -368.43784, y: 21.600082, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,16 +87,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.062431812, y: 0.24629402}
-      - {x: -0.07973099, y: 0.056215048}
+    - - {x: -0.07321167, y: 0.25885773}
+      - {x: -0.122802734, y: 0.09210968}
       - {x: -0.25137615, y: 0.029712677}
-      - {x: -0.074763775, y: -0.06419134}
+      - {x: -0.09988403, y: -0.08393288}
       - {x: -0.10675669, y: -0.24445152}
-      - {x: 0.052767754, y: -0.10124433}
+      - {x: 0.050964355, y: -0.13175392}
       - {x: 0.24502897, y: -0.15178823}
-      - {x: 0.1301279, y: -0.025325894}
+      - {x: 0.16241455, y: -0.025325775}
       - {x: 0.2494502, y: 0.12765825}
-      - {x: 0.08247328, y: 0.085635185}
+      - {x: 0.08425903, y: 0.12512016}
 --- !u!114 &114888002735952498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,9 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e378e614c6b4fab8bd5c3d68b8b671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0.7
+  size: 1
   stoppableTime: 0.5
   stopVelocity: 0.01
+  hitClip: {fileID: 8300000, guid: 2b2c55d535c3e425d8da8396fc9ff1c5, type: 3}
 --- !u!212 &212957247083926554
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -143,8 +144,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 241796341
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3c2406d38c191452281291ab3ea7c38b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

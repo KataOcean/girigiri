@@ -18,6 +18,13 @@ namespace Girigiri
         private bool CanControl { get; set; } = false;
         [SerializeField]
         private PlayArea playArea;
+        [SerializeField]
+        private AudioClip addScoreClip;
+        [SerializeField]
+        private AudioClip openClip;
+        [SerializeField]
+        private AudioClip closeClip;
+        private int openFlame = 0;
 
         // Use this for initialization
         void Start()
@@ -33,6 +40,11 @@ namespace Girigiri
             if (InputManager == null || pot == null) return;
             if (CanControl)
             {
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    SceneLoader.Replace(SceneName.GameRunner);
+                    return;
+                }
                 var state = InputManager.State;
                 var pos = new Vector2(
                     Mathf.Clamp(state.Position.x, playArea.XMin, playArea.XMax),
@@ -40,9 +52,19 @@ namespace Girigiri
                 );
 
                 pot.Move(pos);
+                if (openFlame == 1)
+                {
+                    SE.Instance?.Play(openClip);
+                }
                 if (state.Enter)
                 {
                     pot.Pour();
+                    openFlame++;
+                }
+                else
+                {
+                    if (openFlame > 0) SE.Instance?.Play(closeClip);
+                    openFlame = 0;
                 }
             }
             if (GameTimer == null)
@@ -76,7 +98,8 @@ namespace Girigiri
         {
             var score = Score.Instance;
             score?.AddScore(_cup.Score * ((Combo > 0) ? Combo : 1));
-            if (_cup.IsOverStandard) Combo++;
+            SE.Instance?.Play(addScoreClip);
+            if (_cup.IsGoal) Combo++;
             else Combo = 0;
             Destroy(_cup.gameObject);
             CupFactory.Create();
@@ -98,7 +121,7 @@ namespace Girigiri
             CupFactory.RemoveBrokenListener(gameObject);
             cup.Broken();
             CupFactory.AddBrokenListener(gameObject);
-            SceneLoader.Add("Result");
+            SceneLoader.Add(SceneName.Result);
         }
     }
 }

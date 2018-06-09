@@ -37,6 +37,7 @@ namespace Girigiri
             Timer = 0.0f;
             IsPlay = true;
             IsBegin = true;
+            SceneLoader.Add(SceneName.BGM);
             PlayTimeListener.RemoveAll(x => x == null);
             foreach (var target in PlayTimeListener) ExecuteEvents.Execute<IPlayTime>(target, null, (x, data) => x.OnPlayTime());
         }
@@ -54,6 +55,7 @@ namespace Girigiri
         {
             EndTimeListener.RemoveAll(x => x == null);
             foreach (var target in EndTimeListener) ExecuteEvents.Execute<IEndTime>(target, null, (x, data) => x.OnEndTime());
+            SceneLoader.Remove(SceneName.BGM);
             SceneLoader.Remove(gameObject.scene.name);
         }
         public void AddPlayTimeListener(GameObject listener) => PlayTimeListener.Add(listener);

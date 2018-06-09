@@ -8,6 +8,14 @@ namespace Girigiri
     {
         public static Score Instance { get; private set; }
         public float Value { get; private set; } = 0.0f;
+        public const string PREFS_KEY = "HighScore";
+        public static float HighScore
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat(PREFS_KEY, 10000.0f);
+            }
+        }
         void Awake()
         {
             if (Instance == null)
@@ -23,10 +31,6 @@ namespace Girigiri
         }
 
         // Update is called once per frame
-        void Update()
-        {
-
-        }
         public void AddScore(float value)
         {
             Value += value;
@@ -34,6 +38,14 @@ namespace Girigiri
         public void Reset()
         {
             Value = 0.0f;
+        }
+        public void SaveHighScore()
+        {
+            if (HighScore < Value)
+            {
+                PlayerPrefs.SetFloat(PREFS_KEY, Value);
+                PlayerPrefs.Save();
+            }
         }
     }
 }

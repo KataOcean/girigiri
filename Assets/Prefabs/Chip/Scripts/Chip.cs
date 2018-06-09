@@ -32,6 +32,9 @@ namespace Girigiri
         private bool IsBroken { get; set; } = false;
         const float BROKEN_TIME = 5.0f;
         private float Scale { get; set; }
+        [SerializeField]
+        private AudioClip hitClip;
+        private bool IsHit { get; set; } = false;
         // Use this for initialization
         void Start()
         {
@@ -53,6 +56,7 @@ namespace Girigiri
                 BrokenTimer += Time.deltaTime;
                 if (BrokenTimer > BROKEN_TIME) Destroy(gameObject);
             }
+            if (!IsHit && IsStop) PlayHit();
         }
 
         void OnCollisionEnter2D(Collision2D collision)
@@ -62,12 +66,29 @@ namespace Girigiri
                 ChipFactory?.Remove(this);
                 Destroy(gameObject);
             }
+            else if (collision.gameObject.GetComponent<CupEdge>() != null)
+            {
+                PlayHit();
+            }
         }
+
+        void PlayHit()
+        {
+            if (!IsHit)
+            {
+                SE.Instance?.Play(hitClip);
+                IsHit = true;
+            }
+        }
+
         public void Broken()
         {
             if (gameObject == null) return;
+            var sr = GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sortingLayerName = "Back";
             IsBroken = true;
             BrokenTimer = 0.0f;
+            if (body != null) body.AddForce(new Vector2(UnityEngine.Random.Range(-640.0f, 640.0f), 640.0f));
             gameObject.layer = LayerMask.NameToLayer("InActive");
         }
         public void Fix()

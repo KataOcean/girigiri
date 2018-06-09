@@ -13,9 +13,11 @@ namespace Girigiri
             SceneLoader.Add(SceneName.Title);
             SceneLoader.Add(SceneName.InputManager);
             SceneLoader.Add(SceneName.Main);
+            SceneLoader.Add(SceneName.SE);
+            SceneLoader.Add(SceneName.HighScore);
+            SceneLoader.Add(SceneName.Settings);
             SceneLoader.Remove(gameObject.scene.name);
         }
-
         void Update()
         {
             if (SceneLoader.IsSceneLoaded(SceneName.Title))

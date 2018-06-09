@@ -11,7 +11,6 @@ namespace Girigiri
         [SerializeField]
         private PourPosition pourPosition;
         private bool IsWait { get; set; }
-
         // Use this for initialization
         void Start()
         {

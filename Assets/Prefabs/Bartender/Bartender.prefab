@@ -52,3 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pot: {fileID: 0}
+  cup: {fileID: 0}
+  playArea: {fileID: 0}
+  addScoreClip: {fileID: 8300000, guid: 79204023126514feead291ff6889f939, type: 3}
+  openClip: {fileID: 8300000, guid: 7339dc947fec5470db562f5d95c39e86, type: 3}
+  closeClip: {fileID: 8300000, guid: 38188911098ba4c59af1680cdc9bc9e0, type: 3}

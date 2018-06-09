@@ -168,22 +168,22 @@ Prefab:
     - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 274.5
       objectReference: {fileID: 0}
     - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 154.5
       objectReference: {fileID: 0}
     - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 720.43713
       objectReference: {fileID: 0}
     - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
         type: 2}
@@ -208,16 +208,36 @@ Prefab:
     - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
         type: 2}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1577141350840524, guid: 9193a5114a1c0432fb7f30de5fb4b3e0, type: 2}
       propertyPath: m_Name
       value: Canvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 223096854075401148, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
+        type: 2}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.42890626
+      objectReference: {fileID: 0}
+    - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.42890626
+      objectReference: {fileID: 0}
+    - target: {fileID: 224997617957117730, guid: 9193a5114a1c0432fb7f30de5fb4b3e0,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.42890626
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9193a5114a1c0432fb7f30de5fb4b3e0, type: 2}
@@ -291,6 +311,7 @@ GameObject:
   - component: {fileID: 716050119}
   - component: {fileID: 716050121}
   - component: {fileID: 716050120}
+  - component: {fileID: 716050122}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -305,16 +326,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 716050118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 494117738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320, y: -64}
-  m_SizeDelta: {x: 640, y: 128}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -640, y: -366}
+  m_SizeDelta: {x: 932.45, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &716050120
 MonoBehaviour:
@@ -336,13 +357,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ea68c1ac28311462c801388a16ee23b0, type: 3}
-    m_FontSize: 64
+    m_Font: {fileID: 12800000, guid: 920aa70fea30b400fb95dc554fa2be3b, type: 3}
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 64
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -355,6 +376,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 716050118}
+--- !u!114 &716050122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716050118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1312253683
 Prefab:
   m_ObjectHideFlags: 0

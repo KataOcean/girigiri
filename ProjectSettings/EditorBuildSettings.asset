@@ -24,6 +24,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Result/Result.unity
     guid: 853ce961319c54fae8cde9a71b8e7582
   - enabled: 1
+    path: Assets/Scenes/GUIHighScore/HighScore.unity
+    guid: 57a0cc432b70e49faa287f75b9cc8476
+  - enabled: 1
     path: Assets/Scenes/Score/Score.unity
     guid: 0ec9042372c85455e84ad7c67846aa94
+  - enabled: 1
+    path: Assets/Scenes/BGM/BGM.unity
+    guid: cb9f7058feb8540b48c1b4c66ccb8e7c
+  - enabled: 1
+    path: Assets/Scenes/SE/SE.unity
+    guid: 4925c5b5ff735496d92f8b670d42a370
+  - enabled: 1
+    path: Assets/Scenes/Settings/Settings.unity
+    guid: 3aab2eccc20fc4c7bb2062882ca2df33
   m_configObjects: {}
