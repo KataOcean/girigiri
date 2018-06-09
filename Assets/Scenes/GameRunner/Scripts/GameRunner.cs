@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Globalization;
+using System.Threading;
 
 namespace Girigiri
 {
@@ -10,6 +13,7 @@ namespace Girigiri
         // Use this for initialization
         void Start()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("ja-JP");
             SceneLoader.Add(SceneName.Title);
             SceneLoader.Add(SceneName.InputManager);
             SceneLoader.Add(SceneName.Main);
