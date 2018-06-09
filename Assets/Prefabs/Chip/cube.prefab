@@ -105,6 +105,7 @@ MonoBehaviour:
   size: 1
   stoppableTime: 0.5
   stopVelocity: 0.01
+  hitClip: {fileID: 8300000, guid: 2b2c55d535c3e425d8da8396fc9ff1c5, type: 3}
 --- !u!212 &212749901017259770
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -137,8 +138,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 241796341
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fc86b6a188cd647a8b8bd5b4848e05ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

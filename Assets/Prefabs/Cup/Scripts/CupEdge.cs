@@ -30,10 +30,13 @@ namespace Girigiri
             BrokenTimer = 0.0f;
             if (body == null) body = gameObject.AddComponent<Rigidbody2D>();
             body.bodyType = RigidbodyType2D.Dynamic;
-            body.AddForce(new Vector2(UnityEngine.Random.Range(-320.0f, 320.0f), 320.0f));
+            body.mass = 1;
+            body.AddForce(new Vector2(UnityEngine.Random.Range(-640.0f, 640.0f), 640.0f));
             transform.SetParent(null);
             gameObject.layer = LayerMask.NameToLayer("InActive");
             IsBroken = true;
+            var sr = GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sortingLayerName = "Back";
         }
     }
 }

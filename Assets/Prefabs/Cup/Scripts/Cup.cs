@@ -18,20 +18,24 @@ namespace Girigiri
                 return CountSize();
             }
         }
+        [SerializeField]
+        private Transform GoalHeight;
         public float Score
         {
             get
             {
-                if (!IsOverStandard) return 0.0f;
+                if (!IsGoal) return 0.0f;
                 return (TotalSize / StandardSize) * StandardScore;
             }
         }
-        public bool IsOverStandard => TotalSize >= StandardSize;
+        public bool IsGoal => CheckTopHeight() >= GoalHeight.position.y;
         [SerializeField]
         private float StandardSize = 30.0f;
         private List<CupEdge> CupEdges { get; set; } = new List<CupEdge>();
         public CupState State { get; set; } = CupState.Wait;
         public CupFactory CupFactory;
+        [SerializeField]
+        private AudioClip brokenClip;
         // Use this for initialization
         void Start()
         {
@@ -47,7 +51,7 @@ namespace Girigiri
             {
                 if (Chips.Count > 0 && Chips.Find(x => !x.IsStop) == null)
                 {
-                    if (IsOverStandard) Complete();
+                    if (IsGoal) Complete();
                     else Broken();
                 }
             }
@@ -61,6 +65,12 @@ namespace Girigiri
             {
                 if (chip != null) chip.Fix();
             }
+        }
+
+        float CheckTopHeight()
+        {
+            Chips.RemoveAll(x => x == null);
+            return Chips.Select(x => x.transform.position.y).Max();
         }
 
         float CountSize()
@@ -77,6 +87,7 @@ namespace Girigiri
         {
             if ((State != CupState.Ready && State != CupState.Pouring) || chip == null) return;
             Chips.Add(chip);
+            chip.transform.SetParent(transform);
             if (State == CupState.Ready) State = CupState.Pouring;
         }
 
@@ -85,6 +96,7 @@ namespace Girigiri
             if (State == CupState.Pouring)
             {
                 State = CupState.Broken;
+                SE.Instance?.Play(brokenClip);
                 CupFactory?.Broken(this);
             }
 

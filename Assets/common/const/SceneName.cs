@@ -9,5 +9,9 @@ public static class SceneName{
 	public const string GameTimer = "GameTimer";
 	public const string InputManager = "InputManager";
 	public const string Result = "Result";
+	public const string HighScore = "HighScore";
 	public const string Score = "Score";
+	public const string BGM = "BGM";
+	public const string SE = "SE";
+	public const string Settings = "Settings";
 }
