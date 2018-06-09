@@ -51,5 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89eab6c322c7456dbd717c588448cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chipPrefab: {fileID: 1567584237476890, guid: 6dee6931387064ab385796f462fbe0fd, type: 2}
+  chipPrefabs:
+  - {fileID: 1472606791843040, guid: ace1d3cc30fbd4c9bbdf1e8065e56804, type: 2}
+  - {fileID: 1871237357726064, guid: d9b0de321b3af4cc6a3043a9c74ca8cf, type: 2}
+  - {fileID: 1482123512807558, guid: 92a6efde0fa9944eeb55d183cab5c7dc, type: 2}
   dropListeners: []
+  createListeners: []

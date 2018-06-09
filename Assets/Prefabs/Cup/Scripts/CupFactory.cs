@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 namespace Girigiri
 {
@@ -12,7 +13,15 @@ namespace Girigiri
         [SerializeField]
         private Transform CreatePosition;
         [SerializeField]
-        private GameObject cupPrefab;
+        private List<GameObject> cupPrefabs;
+        private GameObject NextCup
+        {
+            get
+            {
+                int rand = UnityEngine.Random.Range(0, cupPrefabs.Count);
+                return cupPrefabs[rand];
+            }
+        }
         [SerializeField]
         private List<GameObject> completeListeners = new List<GameObject>();
         [SerializeField]
@@ -27,10 +36,9 @@ namespace Girigiri
             }
             else Destroy(gameObject);
         }
-
         public Cup Create()
         {
-            var cupObject = Instantiate(cupPrefab, CreatePosition.position, Quaternion.identity);
+            var cupObject = Instantiate(NextCup, CreatePosition.position, Quaternion.identity);
             var cup = cupObject.GetComponent<Cup>();
             cup.CupFactory = this;
             foreach (var target in createListeners) ExecuteEvents.Execute<ICreateCup>(target, null, (x, data) => x.OnCreateCup(cup));
@@ -46,6 +54,8 @@ namespace Girigiri
             foreach (var target in brokenListeners) ExecuteEvents.Execute<IBrokenCup>(target, null, (x, data) => x.OnBrokenCup(cup));
         }
 
+        public void AddCreateListener(GameObject obj) => createListeners.Add(obj);
+        public void RemoveCreateListener(GameObject obj) => createListeners.Remove(obj);
         public void AddCompleteListener(GameObject obj) => completeListeners.Add(obj);
         public void RemoveCompleteListener(GameObject obj) => completeListeners.Remove(obj);
         public void AddBrokenListener(GameObject obj) => brokenListeners.Add(obj);

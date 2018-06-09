@@ -15,6 +15,7 @@ namespace Girigiri
         public bool IsLeft => Timer < TimeLimit;
         private bool IsPlay { get; set; }
         public bool IsPlaying => IsLeft && IsPlay;
+        private bool IsBegin { get; set; } = false;
         private List<GameObject> PlayTimeListener = new List<GameObject>();
         private List<GameObject> EndTimeListener = new List<GameObject>();
         void Awake()
@@ -35,6 +36,7 @@ namespace Girigiri
         {
             Timer = 0.0f;
             IsPlay = true;
+            IsBegin = true;
             PlayTimeListener.RemoveAll(x => x == null);
             foreach (var target in PlayTimeListener) ExecuteEvents.Execute<IPlayTime>(target, null, (x, data) => x.OnPlayTime());
         }
@@ -42,11 +44,11 @@ namespace Girigiri
         // Update is called once per frame
         void Update()
         {
-            if (!IsPlaying)
+            if (IsBegin && !IsPlaying)
             {
                 End();
             }
-            Timer = Mathf.Min(Timer + Time.deltaTime, TimeLimit);
+            if (IsPlaying) Timer = Mathf.Min(Timer + Time.deltaTime, TimeLimit);
         }
         void End()
         {

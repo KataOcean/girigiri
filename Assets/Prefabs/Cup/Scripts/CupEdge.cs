@@ -10,6 +10,10 @@ namespace Girigiri
         private bool IsBroken { get; set; } = false;
         private float BrokenTimer { get; set; } = 0.0f;
         const float BROKEN_TIME = 4.0f;
+        void Start()
+        {
+            body = GetComponent<Rigidbody2D>();
+        }
         void Update()
         {
             if (IsBroken)
@@ -25,6 +29,7 @@ namespace Girigiri
             if (IsBroken) return;
             BrokenTimer = 0.0f;
             if (body == null) body = gameObject.AddComponent<Rigidbody2D>();
+            body.bodyType = RigidbodyType2D.Dynamic;
             body.AddForce(new Vector2(UnityEngine.Random.Range(-320.0f, 320.0f), 320.0f));
             transform.SetParent(null);
             gameObject.layer = LayerMask.NameToLayer("InActive");

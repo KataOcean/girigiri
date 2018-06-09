@@ -8,7 +8,9 @@ namespace Girigiri
     [RequireComponent(typeof(Rigidbody2D))]
     public class Chip : MonoBehaviour
     {
-        public float Size { get; private set; } = 1.0f;
+        [SerializeField]
+        private float size = 1.0f;
+        public float Size => size * Scale;
         [SerializeField]
         private float stoppableTime = 0.5f; //この時間以上経過したら静止判定を始める
         public bool IsStop
@@ -29,6 +31,7 @@ namespace Girigiri
         private float BrokenTimer { get; set; } = 0.0f;
         private bool IsBroken { get; set; } = false;
         const float BROKEN_TIME = 5.0f;
+        private float Scale { get; set; }
         // Use this for initialization
         void Start()
         {
@@ -38,6 +41,8 @@ namespace Girigiri
                 Debug.Log("Rigidbody2d is null");
                 Destroy(gameObject);
             }
+            Scale = Random.Range(0.8f, 1.2f);
+            transform.localScale = new Vector2(Scale, Scale);
         }
         // Update is called once per frame
         void Update()

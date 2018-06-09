@@ -25,7 +25,6 @@ namespace Girigiri
             ChipFactory = ChipFactory.Instance;
             CupFactory = CupFactory.Instance;
             InputManager = InputManager.Instance;
-            GameTimer = GameTimer.Instance;
         }
 
         // Update is called once per frame
@@ -90,14 +89,15 @@ namespace Girigiri
         public void OnPlayTime()
         {
             CanControl = true;
-            CupFactory.AddBrokenListener(gameObject);
             CupFactory.Create();
+            Combo = 0;
         }
         public void OnEndTime()
         {
             CanControl = false;
             CupFactory.RemoveBrokenListener(gameObject);
             cup.Broken();
+            CupFactory.AddBrokenListener(gameObject);
             SceneLoader.Add("Result");
         }
     }
