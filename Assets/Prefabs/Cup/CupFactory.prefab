@@ -51,6 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5090c6e1573472d90c03cfb4b890ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cupPrefab: {fileID: 0}
-  dropListeners: []
+  CreatePosition: {fileID: 0}
+  cupPrefabs:
+  - {fileID: 1382625044385902, guid: 0fe7e1ac7c23f4741af805d235b2022a, type: 2}
+  - {fileID: 1892158461759188, guid: 25e99583b274e41b9b24a95177523889, type: 2}
+  - {fileID: 1965083417494758, guid: e50a6733ede5e4c4db267aad7986a15e, type: 2}
+  completeListeners: []
+  brokenListeners: []
   createListeners: []

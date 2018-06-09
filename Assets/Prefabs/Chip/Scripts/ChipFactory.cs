@@ -10,7 +10,15 @@ namespace Girigiri
     {
         public static ChipFactory Instance;
         [SerializeField]
-        private GameObject chipPrefab;
+        private List<GameObject> chipPrefabs;
+        private GameObject nextChip
+        {
+            get
+            {
+                int i = Random.Range(0, chipPrefabs.Count);
+                return chipPrefabs[i];
+            }
+        }
         public List<GameObject> dropListeners = new List<GameObject>();
         public List<GameObject> createListeners = new List<GameObject>();
         private List<Chip> chips = new List<Chip>();
@@ -26,7 +34,7 @@ namespace Girigiri
 
         public Chip Create(Vector2 position)
         {
-            var chipObject = Instantiate(chipPrefab, position, Quaternion.identity);
+            var chipObject = Instantiate(nextChip, position, Quaternion.identity);
             var chip = chipObject.GetComponent<Chip>();
             chip.ChipFactory = this;
             chips.Add(chip);

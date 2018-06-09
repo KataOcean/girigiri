@@ -45,7 +45,11 @@ namespace Girigiri
             Chips.RemoveAll(x => x == null);
             if (State == CupState.Pouring)
             {
-                if (Chips.Count > 0 && Chips.Find(x => !x.IsStop) == null) Complete();
+                if (Chips.Count > 0 && Chips.Find(x => !x.IsStop) == null)
+                {
+                    if (IsOverStandard) Complete();
+                    else Broken();
+                }
             }
         }
 

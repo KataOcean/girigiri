@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Girigiri
 {
-    public class CupTest : MonoBehaviour
+    public class CupTest : MonoBehaviour, ICreateCup
     {
         private Cup Cup { get; set; }
         [SerializeField]
@@ -16,15 +16,13 @@ namespace Girigiri
         void Start()
         {
             Cup = FindObjectOfType<Cup>();
-            if (Cup == null)
-            {
-                Debug.Log("Cup is null.");
-            }
+            CupFactory.Instance.AddCreateListener(gameObject);
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (Cup == null || Cup.TotalSize < 5.0f) return;
             SetText(textSize, string.Format("TotalSize: {0:F1}", Cup.TotalSize));
             SetText(textState, string.Format("State: {0}", Cup.State.ToString()));
         }
@@ -32,6 +30,11 @@ namespace Girigiri
         {
             if (text == null) return;
             text.text = message;
+        }
+
+        public void OnCreateCup(Cup cup)
+        {
+            Cup = cup;
         }
     }
 }
