@@ -9,7 +9,8 @@ namespace Girigiri
     {
         [SerializeField]
         private Text highScoreText;
-
+        [SerializeField]
+        private AudioClip deleteClip;
         // Use this for initialization
         void Start()
         {
@@ -17,7 +18,7 @@ namespace Girigiri
             {
                 if (Score.HighScore > 0.0f)
                 {
-                    highScoreText.text = string.Format("最高売上 {0:C}", Score.HighScore);
+                    highScoreText.text = string.Format("最高売上 {0:C}", (int)Score.HighScore);
                 }
                 else
                 {
@@ -27,6 +28,7 @@ namespace Girigiri
         }
         public void Reset()
         {
+            SE.Instance?.Play(deleteClip);
             PlayerPrefs.DeleteKey(Score.PREFS_KEY);
             Start();
         }
