@@ -36,6 +36,8 @@ namespace Girigiri
         public CupFactory CupFactory;
         [SerializeField]
         private AudioClip brokenClip;
+        [SerializeField]
+        private LimitLine limitLine;
         // Use this for initialization
         void Start()
         {
@@ -47,12 +49,17 @@ namespace Girigiri
         void Update()
         {
             Chips.RemoveAll(x => x == null);
+            if (limitLine != null) limitLine.ChangeLine(IsGoal);
             if (State == CupState.Pouring)
             {
                 if (Chips.Count > 0 && Chips.Find(x => !x.IsStop) == null)
                 {
                     if (IsGoal) Complete();
-                    else Broken();
+                    else
+                    {
+                        Girigiri.Score.Instance?.tooShort();
+                        Broken();
+                    }
                 }
             }
         }
@@ -61,6 +68,7 @@ namespace Girigiri
         {
             State = CupState.Complete;
             CupFactory?.Complete(this);
+            if (limitLine != null) Destroy(limitLine.gameObject);
             foreach (var chip in Chips)
             {
                 if (chip != null) chip.Fix();
@@ -70,7 +78,14 @@ namespace Girigiri
         float CheckTopHeight()
         {
             Chips.RemoveAll(x => x == null);
-            return Chips.Select(x => x.transform.position.y).Max();
+            var height = Chips.Where(x => x.IsStop)?.Select(x => x.transform.position.y);
+            if (height.Count() == 0) return -9999.0f;
+            return height.Max();
+        }
+        public void HideLimitLine()
+        {
+            if (limitLine == null) return;
+            limitLine.Hide();
         }
 
         float CountSize()
@@ -98,6 +113,7 @@ namespace Girigiri
                 State = CupState.Broken;
                 SE.Instance?.Play(brokenClip);
                 CupFactory?.Broken(this);
+                if (limitLine != null) Destroy(limitLine.gameObject);
             }
 
             foreach (var edge in CupEdges) if (edge != null) edge.Broken();

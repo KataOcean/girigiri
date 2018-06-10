@@ -18,6 +18,7 @@ namespace Girigiri
         {
             get
             {
+                if (CupNum < cupPrefabs.Count) return cupPrefabs[CupNum];
                 int rand = UnityEngine.Random.Range(0, cupPrefabs.Count);
                 return cupPrefabs[rand];
             }
@@ -28,6 +29,8 @@ namespace Girigiri
         private List<GameObject> brokenListeners = new List<GameObject>();
         [SerializeField]
         private List<GameObject> createListeners = new List<GameObject>();
+        private int CupNum = 0;
+        private const int SHOW_LIMIT_LINE_NUM = 5;
         private void Awake()
         {
             if (Instance == null)
@@ -42,7 +45,13 @@ namespace Girigiri
             var cup = cupObject.GetComponent<Cup>();
             cup.CupFactory = this;
             foreach (var target in createListeners) ExecuteEvents.Execute<ICreateCup>(target, null, (x, data) => x.OnCreateCup(cup));
+            CupNum++;
+            if (CupNum > SHOW_LIMIT_LINE_NUM) cup.HideLimitLine();
             return cup;
+        }
+        public void ResetCupNum()
+        {
+            CupNum = 0;
         }
 
         public void Complete(Cup cup)

@@ -87,6 +87,7 @@ namespace Girigiri
         }
         public void OnDropChip(Chip chip)
         {
+            Score.Instance?.Over();
             cup?.Broken();
         }
         public void OnCreateCup(Cup _cup)
@@ -97,11 +98,10 @@ namespace Girigiri
         public void OnCompleteCup(Cup _cup)
         {
             var score = Score.Instance;
-            score?.AddScore(_cup.Score * ((Combo > 0) ? Combo : 1));
+            score?.AddScore(_cup.Score * ((Combo > 0) ? Combo : 1), Combo);
             SE.Instance?.Play(addScoreClip);
-            if (_cup.IsGoal) Combo++;
-            else Combo = 0;
-            Destroy(_cup.gameObject);
+            Combo++;
+            Destroy(cup.gameObject);
             CupFactory.Create();
         }
         public void OnBrokenCup(Cup _cup)
@@ -112,6 +112,7 @@ namespace Girigiri
         public void OnPlayTime()
         {
             CanControl = true;
+            CupFactory.ResetCupNum();
             CupFactory.Create();
             Combo = 0;
         }
@@ -121,6 +122,7 @@ namespace Girigiri
             CupFactory.RemoveBrokenListener(gameObject);
             cup.Broken();
             CupFactory.AddBrokenListener(gameObject);
+            Score.Instance?.Hide();
             SceneLoader.Add(SceneName.Result);
         }
     }
